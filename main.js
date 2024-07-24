@@ -29,7 +29,7 @@ function interactuarUsuario() {
             if (seleccion >= 1 && seleccion <= componentesPC.length) {
                 const componenteSeleccionado = componentesPC[seleccion - 1];
                 const cantidad = parseInt(prompt("Ingrese la cantidad de " + componenteSeleccionado.nombre + " que desea comprar:"));
-                if (!isNaN(cantidad) && cantidad > 0) {
+                if (parseInt(cantidad) && cantidad > 0) {
                     for (let i = 0; i < cantidad; i++) {
                         carritoCompras.push(componenteSeleccionado);
                         totalCarrito += componenteSeleccionado.precio;
