@@ -1,15 +1,69 @@
-#producto{
-    width: 90%;
-    margin: 0 auto;
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1d308877;
 }
 
-.contenedor{
-    width: auto;
-    background-color: aqua;
+/* Estilo del título */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 40px;
+    color: #000000;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
 }
 
-.imagen{
-    width: 200px;
+/* Contenedor de los productos */
+#productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 60%;
+    margin: 0 50px;
+}
+
+/* Estilos de cada contenedor de producto */
+.contenedor {
+    background-color: #ffffffc0;
+    border: 1px solid #dddddd8f;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.imagen {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.titulo {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.precio {
+    font-size: 1.1em;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.boton {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.boton:hover {
+    background-color: #2980b9;
 }
