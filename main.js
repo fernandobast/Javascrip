@@ -4,7 +4,6 @@ const busqueda = document.getElementById("busqueda");
 const verCarrito = document.getElementById("verCarrito");
 let Carrito = JSON.parse(localStorage.getItem('Carrito')) || [];
 
-// Inicializar el stock
 const stockInicial = {
     "Procesador AMD RYZEN 5 3600 4.2GHz Turbo AM4 Wraith Stealth Cooler": 25,
     "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler": 25,
@@ -55,7 +54,6 @@ const Productos = [
      }
 ];
 
-// Guardar en localStorage
 function guardarEnLocalStorage() {
     localStorage.setItem('Carrito', JSON.stringify(Carrito));
     localStorage.setItem('stock', JSON.stringify(stock));
@@ -154,10 +152,8 @@ const mostrarProductos = (productosFiltrados) => {
     });
 };
 
-// Mostrar todos los productos al cargar la página
 mostrarProductos(Productos);
 
-// Filtrar productos según la búsqueda
 busqueda.addEventListener("input", (e) => {
     const termino = e.target.value.toLowerCase();
     const productosFiltrados = Productos.filter(producto => 
@@ -166,7 +162,6 @@ busqueda.addEventListener("input", (e) => {
     mostrarProductos(productosFiltrados);
 });
 
-// Mostrar/ocultar carrito y desplazar a la sección del carrito
 verCarrito.addEventListener("click", () => {
     if (carritoDOM.style.display === "none" || carritoDOM.style.display === "") {
         actualizarCarrito();
@@ -177,5 +172,4 @@ verCarrito.addEventListener("click", () => {
     }
 });
 
-// Inicializar el carrito cuando se carga la página
 actualizarCarrito();
