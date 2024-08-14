@@ -67,3 +67,24 @@ h1 {
 .boton:hover {
     background-color: #2980b9;
 }
+/* contenedor del carrito */
+
+.carrito {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.carrito div {
+    margin-bottom: 10px;
+}
+
+.carrito button {
+    margin-left: 10px;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
