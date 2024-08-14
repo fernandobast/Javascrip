@@ -1,5 +1,7 @@
 const productos = document.getElementById("productos");
 const carritoDOM = document.getElementById("carrito");
+const busqueda = document.getElementById("busqueda");
+const verCarrito = document.getElementById("verCarrito");
 let Carrito = JSON.parse(localStorage.getItem('Carrito')) || [];
 
 // Inicializar el stock
@@ -78,7 +80,6 @@ const agregadoraAlCarrito = (titulo, precio) => {
     }
 
     guardarEnLocalStorage();
-    actualizarCarrito();
 };
 
 const quitarDelCarrito = (titulo) => {
@@ -145,9 +146,35 @@ const creadoraDeCards = (titulo, imagen, precio) => {
     return contenedor;
 };
 
-Productos.forEach(el => {
-    const productosDOM = creadoraDeCards(el.titulo, el.imagen, el.precio);
-    productos.appendChild(productosDOM);
+const mostrarProductos = (productosFiltrados) => {
+    productos.innerHTML = '';
+    productosFiltrados.forEach(el => {
+        const productosDOM = creadoraDeCards(el.titulo, el.imagen, el.precio);
+        productos.appendChild(productosDOM);
+    });
+};
+
+// Mostrar todos los productos al cargar la página
+mostrarProductos(Productos);
+
+// Filtrar productos según la búsqueda
+busqueda.addEventListener("input", (e) => {
+    const termino = e.target.value.toLowerCase();
+    const productosFiltrados = Productos.filter(producto => 
+        producto.titulo.toLowerCase().includes(termino)
+    );
+    mostrarProductos(productosFiltrados);
+});
+
+// Mostrar/ocultar carrito y desplazar a la sección del carrito
+verCarrito.addEventListener("click", () => {
+    if (carritoDOM.style.display === "none" || carritoDOM.style.display === "") {
+        actualizarCarrito();
+        carritoDOM.style.display = "block";
+        carritoDOM.scrollIntoView({ behavior: "smooth" });
+    } else {
+        carritoDOM.style.display = "none";
+    }
 });
 
 // Inicializar el carrito cuando se carga la página

@@ -88,3 +88,35 @@ h1 {
     padding: 5px;
     cursor: pointer;
 }
+/*Barra busqueda y carrito */
+
+#busqueda {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 300px;
+}
+
+#verCarrito {
+    margin-left: 20px;
+    padding: 10px;
+}
+
+.carrito {
+    border: 1px solid #1f1d1d;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.carrito div {
+    margin-bottom: 10px;
+}
+
+.carrito button {
+    margin-left: 10px;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
