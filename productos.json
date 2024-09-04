@@ -1,0 +1,32 @@
+[
+    {
+        "imagen": "./img/ryzen5.jpg",
+        "titulo": "Procesador AMD RYZEN 5 3600 4.2GHz Turbo AM4 Wraith Stealth Cooler",
+        "precio": 130000
+    },
+    {
+        "imagen": "./img/ryzen3.jpg",
+        "titulo": "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler",
+        "precio": 85000
+    },
+    {
+        "imagen": "./img/ryzen71.jpg",
+        "titulo": "Procesador AMD Ryzen 7 5700G 4.6GHz Turbo + Wraith Stealth Cooler",
+        "precio": 260000
+    },
+    {
+        "imagen": "./img/ryzen72.jpg",
+        "titulo": "Procesador AMD Ryzen 7 7700X 5.4GHz Turbo AM5 - No incluye Cooler - C/VIDEO",
+        "precio": 465000
+    },
+    {
+        "imagen": "./img/ryzen91.jpg",
+        "titulo": "Procesador AMD Ryzen 9 7950X 5.7GHz AM5 - No incluye Cooler - C/Video",
+        "precio": 755000
+    },
+    {
+        "imagen": "./img/ryzen92.jpg",
+        "titulo": "Procesador AMD Ryzen 9 7950X3D 5.7GHz AM5 - No incluye Cooler -",
+        "precio": 892000
+    }
+]

@@ -13,46 +13,7 @@ const stockInicial = {
     "Procesador AMD Ryzen 9 7950X3D 5.7GHz AM5 - No incluye Cooler -": 25
 };
 
-let stock = JSON.parse(localStorage.getItem('stock')) || {...stockInicial};
-
-const Productos = [
-    {
-        imagen: "./img/ryzen5.jpg",
-        titulo: "Procesador AMD RYZEN 5 3600 4.2GHz Turbo AM4 Wraith Stealth Cooler",
-        precio: 130000,
-        boton: "Comprar"
-    },
-    {
-        imagen: "./img/ryzen3.jpg",
-        titulo: "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler",
-        precio: 85000,
-        boton: "Comprar"
-    },
-    {
-        imagen: "./img/ryzen71.jpg",
-        titulo: "Procesador AMD Ryzen 7 5700G 4.6GHz Turbo + Wraith Stealth Cooler",
-        precio: 260000,
-        boton: "Comprar"
-    },
-    {
-        imagen: "./img/ryzen72.jpg",
-        titulo: "Procesador AMD Ryzen 7 7700X 5.4GHz Turbo AM5 - No incluye Cooler - C/VIDEO",
-        precio: 465000,
-        boton: "Comprar"
-    },
-    {
-        imagen: "./img/ryzen91.jpg",
-        titulo: "Procesador AMD Ryzen 9 7950X 5.7GHz AM5 - No incluye Cooler - C/Video",
-        precio: 755000,
-        boton: "Comprar"
-    },
-    {
-        imagen: "./img/ryzen92.jpg",
-        titulo: "Procesador AMD Ryzen 9 7950X3D 5.7GHz AM5 - No incluye Cooler -",
-        precio: 892000,
-        boton: "Comprar"
-     }
-];
+let stock = JSON.parse(localStorage.getItem('stock')) || { ...stockInicial };
 
 function guardarEnLocalStorage() {
     localStorage.setItem('Carrito', JSON.stringify(Carrito));
@@ -73,11 +34,26 @@ const agregadoraAlCarrito = (titulo, precio) => {
             });
         }
         stock[titulo]--;
+
+        
+        Swal.fire({
+            title: 'Producto agregado',
+            text: `${titulo} ha sido agregado al carrito.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+
     } else {
-        alert('No hay suficiente stock');
+        Swal.fire({
+            title: 'Sin stock',
+            text: `No hay suficiente stock de ${titulo}.`,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
     }
 
     guardarEnLocalStorage();
+    actualizarCarrito();
 };
 
 const quitarDelCarrito = (titulo) => {
@@ -86,10 +62,18 @@ const quitarDelCarrito = (titulo) => {
     if (productoEnCarrito) {
         productoEnCarrito.cantidad--;
         stock[titulo]++;
-        
+
         if (productoEnCarrito.cantidad === 0) {
             Carrito = Carrito.filter(el => el.titulo !== titulo);
         }
+
+        
+        Swal.fire({
+            title: 'Producto quitado',
+            text: `${titulo} ha sido quitado del carrito.`,
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        });
     }
 
     guardarEnLocalStorage();
@@ -150,17 +134,39 @@ const mostrarProductos = (productosFiltrados) => {
         const productosDOM = creadoraDeCards(el.titulo, el.imagen, el.precio);
         productos.appendChild(productosDOM);
     });
+
+
+    productosFiltrados.forEach(producto => {
+        const boton = productos.querySelector(`button[onclick*="${producto.titulo}"]`);
+        if (boton) {
+            boton.addEventListener("click", () => {
+                agregadoraAlCarrito(producto.titulo, producto.precio);
+            });
+        }
+    });
 };
 
-mostrarProductos(Productos);
+fetch('productos.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error fetching productos.json');
+        }
+        return response.json();
+    })
+    .then(data => {
+        mostrarProductos(data);
 
-busqueda.addEventListener("input", (e) => {
-    const termino = e.target.value.toLowerCase();
-    const productosFiltrados = Productos.filter(producto => 
-        producto.titulo.toLowerCase().includes(termino)
-    );
-    mostrarProductos(productosFiltrados);
-});
+        busqueda.addEventListener("input", (e) => {
+            const termino = e.target.value.toLowerCase();
+            const productosFiltrados = data.filter(producto => 
+                producto.titulo.toLowerCase().includes(termino)
+            );
+            mostrarProductos(productosFiltrados);
+        });
+    })
+    .catch(error => {
+       
+    });
 
 verCarrito.addEventListener("click", () => {
     if (carritoDOM.style.display === "none" || carritoDOM.style.display === "") {

@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1d308877;
+    background-color: #354270d0;
 }
 
 /* Estilo del título */
@@ -65,7 +65,7 @@ h1 {
 }
 
 .boton:hover {
-    background-color: #2980b9;
+    background-color: #1b3e50;
 }
 /* contenedor del carrito */
 
